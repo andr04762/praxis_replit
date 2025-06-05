@@ -17,11 +17,10 @@ export default function CoursePage() {
   const userId = 1; // Mock user ID
 
   const { data: currentModule } = useQuery<Module>({
-    queryKey: ['/api/modules', currentModuleId],
+    queryKey: [`/api/modules/${currentModuleId}`],
   });
   
-  console.log('Current Module ID:', currentModuleId);
-  console.log('Current Module Data:', currentModule);
+
 
   const { data: modules = [] } = useQuery<Module[]>({
     queryKey: ['/api/modules'],
