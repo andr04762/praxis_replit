@@ -4,10 +4,10 @@ import app from './app';
 const server = createServer(app);
 const port = Number(process.env.PORT) || 5000;
 
-if (process.env.NODE_ENV !== 'production') {
-  server.listen(port, () => {
+server.listen(port, () => {
+  if (process.env.NODE_ENV !== 'test') {
     console.log(`Server running on http://localhost:${port}`);
-  });
-}
+  }
+});
 
 export default server;
