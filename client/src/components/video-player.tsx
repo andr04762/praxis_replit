@@ -23,16 +23,6 @@ export default function VideoPlayer({
   const [isPlaying, setIsPlaying] = useState(false);
   const [hasWatched, setHasWatched] = useState(false);
 
-  const handlePlay = () => {
-    setIsPlaying(true);
-    // In a real implementation, this would integrate with React Player or YouTube API
-    // For now, we'll simulate video completion after 3 seconds
-    setTimeout(() => {
-      setHasWatched(true);
-      onVideoComplete?.();
-    }, 3000);
-  };
-
   const extractVideoId = (url: string) => {
     if (!url) return null;
     const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
@@ -41,13 +31,20 @@ export default function VideoPlayer({
 
   const videoId = extractVideoId(videoUrl);
   const thumbnailUrl = videoId ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg` : '';
+  const embedUrl = videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0&modestbranding=1` : '';
+
+  const handlePlay = () => {
+    setIsPlaying(true);
+    setHasWatched(true);
+    onVideoComplete?.();
+  };
 
   return (
     <Card className="mb-8 overflow-hidden shadow-lg">
       {/* Video Player Area */}
       <div className="aspect-video bg-black relative">
-        {!isPlaying ? (
-          <div className="absolute inset-0 flex items-center justify-center">
+        {!isPlaying && videoId ? (
+          <div className="absolute inset-0 flex items-center justify-center cursor-pointer" onClick={handlePlay}>
             {thumbnailUrl && (
               <img 
                 src={thumbnailUrl} 
@@ -60,7 +57,6 @@ export default function VideoPlayer({
               <Button
                 size="lg"
                 className="w-20 h-20 rounded-full bg-red-600 hover:bg-red-700 mb-4"
-                onClick={handlePlay}
               >
                 <Play className="w-8 h-8 text-white ml-1" />
               </Button>
@@ -68,17 +64,19 @@ export default function VideoPlayer({
               <p className="text-gray-300 text-sm">Duration: {duration}</p>
             </div>
           </div>
+        ) : isPlaying && embedUrl ? (
+          <iframe
+            src={embedUrl}
+            title={title}
+            className="w-full h-full"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center bg-gray-900">
             <div className="text-center text-white">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
-              <p>Loading video...</p>
-              {hasWatched && (
-                <div className="mt-4 flex items-center justify-center text-green-400">
-                  <CheckCircle className="w-5 h-5 mr-2" />
-                  <span>Video completed!</span>
-                </div>
-              )}
+              <p>Video not available</p>
             </div>
           </div>
         )}
