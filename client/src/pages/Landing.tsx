@@ -60,6 +60,7 @@ export default function LandingPage() {
             </ul>
             <Button asChild className="mt-6">
               <Link to="/course">Start Now</Link>
+
             </Button>
           </div>
           <img
