@@ -112,44 +112,116 @@ export class MemStorage implements IStorage {
         question: "What is the fundamental advantage of learning a query language like SQL as a healthcare analyst?",
         options: [
           "It enables you to bypass IT and access unauthorized datasets",
-          "It helps interpret data from data consumer to data explorer, increasing your ability to understand and influence data use",
+          "It shifts your role from data consumer to data explorer, increasing your ability to understand and influence data use",
           "It guarantees faster dashboard performance in Tableau and Power BI",
           "It automates all analytics tasks so analysts no longer need to interpret data"
         ],
         correctAnswer: 1,
-        explanation: "SQL transforms healthcare analysts from data consumers to data explorers, giving them direct access to understand and influence how data is used for insights."
+        explanation: "Learning SQL gives analysts agency to explore, understand, and influence how data is used."
+      },
+      {
+        id: 2,
+        question: "Which mindset most aligns with the skills and habits of an effective modern healthcare analyst?",
+        options: [
+          "Relying on curated dashboards and trusting that data pipelines work as intended",
+          "Focusing on front-end tools and assuming data issues are someone else's responsibility",
+          "Taking ownership of understanding where data comes from and how it’s shaped, even if it requires new technical skills",
+          "Avoiding technical systems in favor of more user-friendly applications"
+        ],
+        correctAnswer: 2,
+        explanation: "Effective analysts are curious and seek to understand the origin and logic behind data."
+      },
+      {
+        id: 3,
+        question: "Why is relying solely on front-end tools for healthcare data analysis potentially limiting?",
+        options: [
+          "Front-end tools are slower than backend databases",
+          "Front-end tools often lack the ability to query or transform data flexibly and are disconnected from the full context of the data pipeline",
+          "Most analysts aren't trained to use front-end tools properly",
+          "Front-end tools require more coding knowledge than SQL"
+        ],
+        correctAnswer: 1,
+        explanation: "Front-end tools provide a limited lens into the broader data environment and restrict flexible querying."
       }
     ];
 
     // Create knowledge check quizzes for Module 2
     const module2Questions: QuizQuestion[] = [
       {
-        id: 2,
-        question: "Which of the following best describes why separating different types of encounters (ED, hospital, ambulatory) into separate tables can be helpful for analysis—even if all the data could technically be stored in one table?",
+        id: 4,
+        question: "Which of the following best describes why separating different types of encounters (ED, hospital, ambulatory) into separate tables can be helpful for analysts—even if all the data could technically be stored in one table?",
         options: [
           "It increases query performance and reduces storage costs",
           "It makes it easier to enforce strict referential integrity across the system",
           "It aligns data structure with how humans conceptualize different care settings, allowing for clearer reasoning and insight",
-          "It prevents analysts from accidentally querying the wrong data types"
+          "It avoids needing to use SQL joins, which are time-consuming and risky"
         ],
         correctAnswer: 2,
-        explanation: "Separating encounter types into different tables mirrors how healthcare professionals think about different care settings, making the data structure more intuitive for analysis and insight generation."
+        explanation: "Structuring data to match how people think about care settings provides clarity for analysis even if it isn't technically required."
+      },
+      {
+        id: 5,
+        question: "Why is it important to understand that one patient can have many encounters across different care settings and time periods?",
+        options: [
+          "Because each encounter must have a unique patient ID for billing purposes",
+          "Because storing all patient data in one table can violate privacy rules",
+          "Because understanding this relationship is essential for stitching together a patient’s full clinical story using data",
+          "Because it's the only way to design normalized databases"
+        ],
+        correctAnswer: 2,
+        explanation: "Recognizing the patient-to-encounter relationship is key to piecing together the full clinical narrative."
+      },
+      {
+        id: 6,
+        question: "Why might a simplified, denormalized data set (or “semantic layer”) be more valuable for analysts than a highly normalized one?",
+        options: [
+          "It uses less technical language and can be managed without any SQL",
+          "It protects patient privacy by reducing the amount of information visible in one place",
+          "It allows analysts to focus on insights and relationships without spending time reconstructing scattered data",
+          "It requires less storage space and is faster to load into reporting tools"
+        ],
+        correctAnswer: 2,
+        explanation: "A semantic layer lets analysts spend time on insights instead of rebuilding data from many tables."
       }
     ];
 
     // Create knowledge check quizzes for Module 3
     const module3Questions: QuizQuestion[] = [
       {
-        id: 3,
+        id: 7,
         question: "Which best reflects the role of SQL for a modern healthcare analyst in a world with generative AI tools?",
         options: [
           "A language analysts must memorize to preserve technical independence",
-          "A general-skilled primarily used for joining and aggregating healthcare tables",
+          "A technical skillset primarily used for joining and aggregating healthcare tables",
           "A tool for precisely expressing business questions and validating logic, even if AI drafts the query",
-          "An outdated skill set that will likely be replaced by point-and-click interfaces"
+          "An outdated programming language being replaced by point-and-click tools"
         ],
         correctAnswer: 2,
-        explanation: "In the age of AI, SQL serves as a precise language for expressing business questions and validating the logic of AI-generated queries, ensuring accuracy in healthcare analytics."
+        explanation: "SQL remains vital as the language for clearly expressing questions and validating AI-generated queries."
+      },
+      {
+        id: 8,
+        question: "In the future state you describe, what will distinguish high-value analysts from others?",
+        options: [
+          "The speed at which they can memorize SQL syntax and table names",
+          "Their ability to write error-free SQL from scratch",
+          "Their skill in navigating healthcare compliance systems",
+          "Their ability to ask clear, structured questions and guide tools toward meaningful insights"
+        ],
+        correctAnswer: 3,
+        explanation: "High-value analysts excel at framing questions and steering tools toward insightful answers."
+      },
+      {
+        id: 9,
+        question: "Why should analysts still learn the structure of a SQL query (e.g., SELECT, FROM, JOIN, WHERE, GROUP BY), even if AI writes the first draft?",
+        options: [
+          "Because AI cannot generate working code without full human-written queries",
+          "Because query structure reveals how data is connected and filtered—critical for interpreting and validating results",
+          "Because most healthcare systems prohibit any use of AI in data access",
+          "Because hand-coding is always faster than prompting AI tools"
+        ],
+        correctAnswer: 1,
+        explanation: "Understanding query flow is necessary to interpret and validate the results that AI-generated SQL produces."
       }
     ];
 
