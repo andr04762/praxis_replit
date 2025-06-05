@@ -1,4 +1,4 @@
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 import { AcademicCapIcon, LightBulbIcon, RocketLaunchIcon, CurrencyDollarIcon } from "react-icons/hi2";
 import { Check, X, Star } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -59,7 +59,8 @@ export default function LandingPage() {
               ))}
             </ul>
             <Button asChild className="mt-6">
-              <Link href="/course">Start Now</Link>
+              <Link to="/course">Start Now</Link>
+
             </Button>
           </div>
           <img
@@ -187,7 +188,7 @@ export default function LandingPage() {
       <section className="py-16 bg-amber-50 text-center">
         <h2 className="text-3xl font-bold mb-4">Ready to start learning with Praxis?</h2>
         <Button asChild>
-          <Link href="/course">Join the Course</Link>
+          <Link to="/course">Join the Course</Link>
         </Button>
       </section>
     </div>
