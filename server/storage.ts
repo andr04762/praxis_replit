@@ -71,47 +71,31 @@ export class MemStorage implements IStorage {
     this.users.set(1, sampleUser);
     this.currentUserId = 2;
 
-    // Create course modules
+    // Create course modules from your course specification
     const moduleData = [
       {
         title: "Unlock the Power of SQL & BigQuery",
-        description: "What is the world of SQL and why should I care?",
-        videoUrl: "https://youtu.be/dQw4w9WgXcQ",
+        description: "What is the world of SQL and why should I care? Ready to move beyond spreadsheets and front-end exports? In this kickoff module of our \"Advanced Analytics in Healthcare\" series, we break down what SQL is, why it matters, and how Google BigQuery turns raw EHR, claims, lab, and wearable data into lightning-fast insights.",
+        videoUrl: "https://youtu.be/8xKM1",
         videoDuration: "15:32",
         orderIndex: 1,
         isLocked: false
       },
       {
         title: "Intro to Healthcare Dataset",
-        description: "Introduction to healthcare data structures",
-        videoUrl: "https://youtu.be/dQw4w9WgXcQ",
+        description: "Video Overview Welcome to Module 2 – Intro to a Healthcare Dataset in the Advanced Analytics in Healthcare SQL & BigQuery series!",
+        videoUrl: "https://youtu.be/beDs0",
         videoDuration: "22:00",
         orderIndex: 2,
         isLocked: false
       },
       {
         title: "SQL Statement Basics",
-        description: "Fundamentals of SQL syntax and structure",
-        videoUrl: "https://youtu.be/dQw4w9WgXcQ",
+        description: "SQL Advanced Analytics in Healthcare SQL & BigQuery – Module 3: SQL Statement Basics Using Generative AI Welcome to Module 3 of our Advanced Analytics in Healthcare SQL & BigQuery series!",
+        videoUrl: "https://youtu.be/lP9ls",
         videoDuration: "18:00",
         orderIndex: 3,
         isLocked: false
-      },
-      {
-        title: "Advanced Joins & Subqueries",
-        description: "Complex data relationships and nested queries",
-        videoUrl: "https://youtu.be/dQw4w9WgXcQ",
-        videoDuration: "25:00",
-        orderIndex: 4,
-        isLocked: true
-      },
-      {
-        title: "Window Functions",
-        description: "Advanced analytical functions in SQL",
-        videoUrl: "https://youtu.be/dQw4w9WgXcQ",
-        videoDuration: "30:00",
-        orderIndex: 5,
-        isLocked: true
       }
     ];
 
@@ -152,7 +136,7 @@ export class MemStorage implements IStorage {
     const quiz: Quiz = {
       id: 1,
       moduleId: 1,
-      questions: quizQuestions
+      questions: quizQuestions as QuizQuestion[]
     };
     this.quizzes.set(1, quiz);
     this.currentQuizId = 2;
@@ -241,7 +225,7 @@ LIMIT 10;`,
 
   async createModule(insertModule: InsertModule): Promise<Module> {
     const id = this.currentModuleId++;
-    const module: Module = { ...insertModule, id };
+    const module: Module = { ...insertModule, id, isLocked: insertModule.isLocked ?? true };
     this.modules.set(id, module);
     return module;
   }
@@ -252,7 +236,11 @@ LIMIT 10;`,
 
   async createQuiz(insertQuiz: InsertQuiz): Promise<Quiz> {
     const id = this.currentQuizId++;
-    const quiz: Quiz = { ...insertQuiz, id };
+    const quiz: Quiz = { 
+      id, 
+      moduleId: insertQuiz.moduleId, 
+      questions: insertQuiz.questions as QuizQuestion[]
+    };
     this.quizzes.set(id, quiz);
     return quiz;
   }

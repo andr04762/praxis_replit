@@ -104,7 +104,7 @@ export default function ModuleSidebar({
                     <Play className="w-3 h-3 mr-1" />
                     <span>Video • {module.videoDuration}</span>
                   </div>
-                  {progress?.quizScore !== null && (
+                  {progress?.quizScore !== null && progress?.quizScore !== undefined && (
                     <div className="flex items-center">
                       <FileQuestion className="w-3 h-3 mr-1" />
                       <span>Quiz • {progress.quizScore}%</span>

@@ -118,15 +118,16 @@ export default function QuizSection({ moduleId, userId, onQuizComplete }: QuizSe
   };
 
   const handleSubmit = () => {
+    if (!quiz?.questions) return;
     const answerArray = quiz.questions.map((_, index) => answers[index] ?? -1);
     submitQuizMutation.mutate(answerArray);
   };
 
-  const progress = ((currentQuestion + 1) / quiz.questions.length) * 100;
-  const question = quiz.questions[currentQuestion];
-  const isLastQuestion = currentQuestion === quiz.questions.length - 1;
+  const progress = quiz?.questions?.length ? ((currentQuestion + 1) / quiz.questions.length) * 100 : 0;
+  const question = quiz?.questions?.[currentQuestion];
+  const isLastQuestion = quiz?.questions ? currentQuestion === quiz.questions.length - 1 : false;
   const hasAnswered = answers[currentQuestion] !== undefined;
-  const allQuestionsAnswered = quiz.questions.every((_, index) => answers[index] !== undefined);
+  const allQuestionsAnswered = quiz?.questions?.every((_, index) => answers[index] !== undefined) ?? false;
 
   if (showResults && quizResults) {
     return (
@@ -195,7 +196,7 @@ export default function QuizSection({ moduleId, userId, onQuizComplete }: QuizSe
           <CardTitle>Knowledge Check</CardTitle>
           <div className="flex items-center text-sm text-gray-600">
             <Clock className="w-4 h-4 mr-1" />
-            <span>{quiz.questions.length} questions • 10 minutes</span>
+            <span>{quiz?.questions?.length || 0} questions • 10 minutes</span>
           </div>
         </div>
       </CardHeader>
@@ -204,30 +205,32 @@ export default function QuizSection({ moduleId, userId, onQuizComplete }: QuizSe
         {/* Progress */}
         <div>
           <div className="flex justify-between text-sm text-gray-600 mb-2">
-            <span>Question {currentQuestion + 1} of {quiz.questions.length}</span>
+            <span>Question {currentQuestion + 1} of {quiz?.questions?.length || 0}</span>
             <span>{Math.round(progress)}% complete</span>
           </div>
           <Progress value={progress} />
         </div>
 
         {/* Question */}
-        <div>
-          <h3 className="text-lg font-medium text-gray-900 mb-4">{question.question}</h3>
-          
-          <RadioGroup
-            value={answers[currentQuestion]?.toString()}
-            onValueChange={(value) => handleAnswerSelect(currentQuestion, parseInt(value))}
-          >
-            {question.options.map((option, index) => (
-              <div key={index} className="flex items-center space-x-3 p-4 border rounded-lg hover:bg-gray-50 transition-colors">
-                <RadioGroupItem value={index.toString()} id={`option-${index}`} />
-                <Label htmlFor={`option-${index}`} className="flex-1 cursor-pointer">
-                  {option}
-                </Label>
-              </div>
-            ))}
-          </RadioGroup>
-        </div>
+        {question && (
+          <div>
+            <h3 className="text-lg font-medium text-gray-900 mb-4">{question.question}</h3>
+            
+            <RadioGroup
+              value={answers[currentQuestion]?.toString()}
+              onValueChange={(value) => handleAnswerSelect(currentQuestion, parseInt(value))}
+            >
+              {question.options.map((option, index) => (
+                <div key={index} className="flex items-center space-x-3 p-4 border rounded-lg hover:bg-gray-50 transition-colors">
+                  <RadioGroupItem value={index.toString()} id={`option-${index}`} />
+                  <Label htmlFor={`option-${index}`} className="flex-1 cursor-pointer">
+                    {option}
+                  </Label>
+                </div>
+              ))}
+            </RadioGroup>
+          </div>
+        )}
 
         {/* Navigation */}
         <div className="flex justify-between">
