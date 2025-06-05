@@ -33,8 +33,11 @@ export default function QuizSection({ moduleId, userId, onQuizComplete }: QuizSe
   const queryClient = useQueryClient();
 
   const { data: quiz, isLoading } = useQuery<Quiz>({
-    queryKey: ['/api/modules', moduleId, 'quiz'],
+    queryKey: [`/api/modules/${moduleId}/quiz`],
   });
+
+  console.log('Quiz data for module', moduleId, ':', quiz);
+  console.log('Quiz loading state:', isLoading);
 
   const submitQuizMutation = useMutation({
     mutationFn: async (answerArray: number[]) => {
