@@ -25,14 +25,33 @@ export default function VideoPlayer({
 
   const extractVideoId = (url: string) => {
     if (!url) return null;
-    // Handle both youtube.com/watch?v= and youtu.be/ formats
-    const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
-    return match ? match[1] : null;
+    console.log('Extracting video ID from URL:', url);
+    
+    // Handle youtube.com/watch?v= format
+    let match = url.match(/(?:youtube\.com\/watch\?v=)([^&\n?#]+)/);
+    if (match) {
+      console.log('Found video ID:', match[1]);
+      return match[1];
+    }
+    
+    // Handle youtu.be/ format
+    match = url.match(/(?:youtu\.be\/)([^&\n?#]+)/);
+    if (match) {
+      console.log('Found video ID:', match[1]);
+      return match[1];
+    }
+    
+    console.log('No video ID found');
+    return null;
   };
 
   const videoId = extractVideoId(videoUrl);
   const thumbnailUrl = videoId ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg` : '';
   const embedUrl = videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0&modestbranding=1` : '';
+  
+  console.log('Video URL:', videoUrl);
+  console.log('Video ID:', videoId);
+  console.log('Embed URL:', embedUrl);
 
   const handlePlay = () => {
     setIsPlaying(true);
