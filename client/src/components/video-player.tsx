@@ -25,6 +25,7 @@ export default function VideoPlayer({
 
   const extractVideoId = (url: string) => {
     if (!url) return null;
+    // Handle both youtube.com/watch?v= and youtu.be/ formats
     const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
     return match ? match[1] : null;
   };
