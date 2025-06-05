@@ -1,6 +1,9 @@
 import { createServer } from 'http';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import app from './app';
+// Import the compiled JavaScript file explicitly so that Node's ESM
+// resolver can locate the file both locally and in the Vercel
+// serverless environment.
+import app from './app.js';
 
 // Run a local HTTP server when not deployed on Vercel.
 if (!process.env.VERCEL) {
