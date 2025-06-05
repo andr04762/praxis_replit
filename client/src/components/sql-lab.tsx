@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -28,12 +28,14 @@ export default function SqlLab({ moduleId, userId, onLabComplete }: SqlLabProps)
 
   const { data: lab, isLoading } = useQuery<SqlLab>({
     queryKey: ['/api/modules', moduleId, 'lab'],
-    onSuccess: (data) => {
-      if (data && !query) {
-        setQuery(data.initialQuery);
-      }
-    },
   });
+
+  // Set initial query when lab data loads
+  useEffect(() => {
+    if (lab && !query) {
+      setQuery(lab.initialQuery);
+    }
+  }, [lab, query]);
 
   const executeQueryMutation = useMutation({
     mutationFn: async (sqlQuery: string) => {
@@ -92,13 +94,13 @@ export default function SqlLab({ moduleId, userId, onLabComplete }: SqlLabProps)
   }
 
   const handleRunQuery = () => {
-    if (query.trim()) {
+    if (query && query.trim()) {
       executeQueryMutation.mutate(query);
     }
   };
 
   const handleReset = () => {
-    setQuery(lab.initialQuery);
+    setQuery(lab?.initialQuery || "");
     setQueryResults(null);
   };
 

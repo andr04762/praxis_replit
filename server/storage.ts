@@ -105,41 +105,77 @@ export class MemStorage implements IStorage {
     });
     this.currentModuleId = 6;
 
-    // Create sample quizzes
-    const quizQuestions: QuizQuestion[] = [
+    // Create knowledge check quizzes for Module 1
+    const module1Questions: QuizQuestion[] = [
       {
         id: 1,
-        question: "What is the primary advantage of using SQL for healthcare data analysis compared to traditional spreadsheet tools?",
+        question: "What is the fundamental advantage of learning a query language like SQL as a healthcare analyst?",
         options: [
-          "SQL provides better visualization capabilities than spreadsheets",
-          "SQL allows direct access to enterprise data with stable, scalable processing",
-          "SQL is easier to learn than spreadsheet formulas",
-          "SQL works only with structured data formats"
+          "It enables you to bypass IT and access unauthorized datasets",
+          "It helps interpret data from data consumer to data explorer, increasing your ability to understand and influence data use",
+          "It guarantees faster dashboard performance in Tableau and Power BI",
+          "It automates all analytics tasks so analysts no longer need to interpret data"
         ],
         correctAnswer: 1,
-        explanation: "SQL provides direct, stable access to enterprise data with scalable processing capabilities, making it ideal for large healthcare datasets."
-      },
-      {
-        id: 2,
-        question: "What is BigQuery's main advantage for healthcare analytics?",
-        options: [
-          "It's free to use",
-          "It provides serverless scale and real-time speed",
-          "It only works with Google services",
-          "It requires no SQL knowledge"
-        ],
-        correctAnswer: 1,
-        explanation: "BigQuery offers serverless scale and real-time speed, allowing healthcare organizations to process large datasets without infrastructure management."
+        explanation: "SQL transforms healthcare analysts from data consumers to data explorers, giving them direct access to understand and influence how data is used for insights."
       }
     ];
 
-    const quiz: Quiz = {
+    // Create knowledge check quizzes for Module 2
+    const module2Questions: QuizQuestion[] = [
+      {
+        id: 2,
+        question: "Which of the following best describes why separating different types of encounters (ED, hospital, ambulatory) into separate tables can be helpful for analysis—even if all the data could technically be stored in one table?",
+        options: [
+          "It increases query performance and reduces storage costs",
+          "It makes it easier to enforce strict referential integrity across the system",
+          "It aligns data structure with how humans conceptualize different care settings, allowing for clearer reasoning and insight",
+          "It prevents analysts from accidentally querying the wrong data types"
+        ],
+        correctAnswer: 2,
+        explanation: "Separating encounter types into different tables mirrors how healthcare professionals think about different care settings, making the data structure more intuitive for analysis and insight generation."
+      }
+    ];
+
+    // Create knowledge check quizzes for Module 3
+    const module3Questions: QuizQuestion[] = [
+      {
+        id: 3,
+        question: "Which best reflects the role of SQL for a modern healthcare analyst in a world with generative AI tools?",
+        options: [
+          "A language analysts must memorize to preserve technical independence",
+          "A general-skilled primarily used for joining and aggregating healthcare tables",
+          "A tool for precisely expressing business questions and validating logic, even if AI drafts the query",
+          "An outdated skill set that will likely be replaced by point-and-click interfaces"
+        ],
+        correctAnswer: 2,
+        explanation: "In the age of AI, SQL serves as a precise language for expressing business questions and validating the logic of AI-generated queries, ensuring accuracy in healthcare analytics."
+      }
+    ];
+
+    // Create quizzes for each module
+    const quiz1: Quiz = {
       id: 1,
       moduleId: 1,
-      questions: quizQuestions as QuizQuestion[]
+      questions: module1Questions
     };
-    this.quizzes.set(1, quiz);
-    this.currentQuizId = 2;
+    this.quizzes.set(1, quiz1);
+
+    const quiz2: Quiz = {
+      id: 2,
+      moduleId: 2,
+      questions: module2Questions
+    };
+    this.quizzes.set(2, quiz2);
+
+    const quiz3: Quiz = {
+      id: 3,
+      moduleId: 3,
+      questions: module3Questions
+    };
+    this.quizzes.set(3, quiz3);
+
+    this.currentQuizId = 4;
 
     // Create SQL lab for module 1
     const sqlLab: SqlLab = {
