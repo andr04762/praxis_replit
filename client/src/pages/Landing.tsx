@@ -1,5 +1,10 @@
-import { Link } from "react-router-dom";
-import { AcademicCapIcon, LightBulbIcon, RocketLaunchIcon, CurrencyDollarIcon } from "react-icons/hi2";
+import { Link } from "wouter";
+import {
+  HiAcademicCap as AcademicCapIcon,
+  HiLightBulb as LightBulbIcon,
+  HiRocketLaunch as RocketLaunchIcon,
+  HiCurrencyDollar as CurrencyDollarIcon,
+} from "react-icons/hi2";
 import { Check, X, Star } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
