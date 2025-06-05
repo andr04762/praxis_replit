@@ -12,4 +12,9 @@ app.get('/api/hello', (_req, res) => {
   res.json({ message: 'Hello from Vercel' });
 });
 
+// Serve a simple course page to verify the environment
+app.get('/course', (_req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'course.html'));
+});
+
 export default app;
