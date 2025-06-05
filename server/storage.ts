@@ -76,7 +76,7 @@ export class MemStorage implements IStorage {
       {
         title: "Unlock the Power of SQL & BigQuery",
         description: "What is the world of SQL and why should I care? Ready to move beyond spreadsheets and front-end exports? In this kickoff module of our \"Advanced Analytics in Healthcare\" series, we break down what SQL is, why it matters, and how Google BigQuery turns raw EHR, claims, lab, and wearable data into lightning-fast insights.",
-        videoUrl: "https://youtu.be/3K8Xl",
+        videoUrl: "https://youtu.be/dQw4w9WgXcQ",
         videoDuration: "15:32",
         orderIndex: 1,
         isLocked: false
@@ -84,7 +84,7 @@ export class MemStorage implements IStorage {
       {
         title: "Intro to Healthcare Dataset",
         description: "Video Overview Welcome to Module 2 – Intro to a Healthcare Dataset in the Advanced Analytics in Healthcare SQL & BigQuery series!",
-        videoUrl: "https://youtu.be/bt3P",
+        videoUrl: "https://youtu.be/9bZkp7q19f0",
         videoDuration: "22:00",
         orderIndex: 2,
         isLocked: false
@@ -92,7 +92,7 @@ export class MemStorage implements IStorage {
       {
         title: "SQL Statement Basics",
         description: "SQL Advanced Analytics in Healthcare SQL & BigQuery – Module 3: SQL Statement Basics Using Generative AI Welcome to Module 3 of our Advanced Analytics in Healthcare SQL & BigQuery series!",
-        videoUrl: "https://youtu.be/P9LM",
+        videoUrl: "https://youtu.be/HXV3zeQKqGY",
         videoDuration: "18:00",
         orderIndex: 3,
         isLocked: false
