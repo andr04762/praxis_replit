@@ -5,6 +5,10 @@ import {
   HiRocketLaunch as RocketLaunchIcon,
   HiCurrencyDollar as CurrencyDollarIcon,
 } from "react-icons/hi2";
+import JesseImg from "@assets/Landing.Jesse.png";
+import ConferenceImg from "@assets/Landing.Conferance.png";
+import LoungeImg from "@assets/Landing.Lounge.png";
+import WorkstationImg from "@assets/Landing.Workstation.png";
 import { Check, X, Star } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
@@ -26,9 +30,21 @@ export default function LandingPage() {
   ];
 
   const products = [
-    { title: "Workstation", image: "https://via.placeholder.com/600x400", text: "Set up a productive study space" },
-    { title: "Conference", image: "https://via.placeholder.com/600x400", text: "Collaborate in virtual rooms" },
-    { title: "Lounge", image: "https://via.placeholder.com/600x400", text: "Learn comfortably anywhere" },
+    {
+      title: "Workstation",
+      image: WorkstationImg,
+      text: "Set up a productive study space",
+    },
+    {
+      title: "Conference",
+      image: ConferenceImg,
+      text: "Collaborate in virtual rooms",
+    },
+    {
+      title: "Lounge",
+      image: LoungeImg,
+      text: "Learn comfortably anywhere",
+    },
   ];
 
   const faq = [
@@ -69,7 +85,7 @@ export default function LandingPage() {
             </Button>
           </div>
           <img
-            src="https://via.placeholder.com/550x380"
+            src={JesseImg}
             alt="Praxis preview"
             className="w-full max-w-md rounded-lg shadow"
           />
@@ -148,7 +164,7 @@ export default function LandingPage() {
               <Card key={t.name} className="text-center">
                 <CardHeader className="items-center">
                   <img
-                    src="https://via.placeholder.com/48"
+                    src={JesseImg}
                     alt={t.name}
                     className="rounded-full mb-2"
                   />
