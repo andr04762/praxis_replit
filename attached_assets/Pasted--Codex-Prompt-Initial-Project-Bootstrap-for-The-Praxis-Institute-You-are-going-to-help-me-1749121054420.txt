@@ -1,0 +1,75 @@
+## 🧠 Codex Prompt: Initial Project Bootstrap for The Praxis Institute
+
+> You are going to help me build a new AI-powered education platform called **The Praxis Institute**, focused on teaching healthcare analytics. This project will be built in **Next.js with TypeScript**, using **Tailwind CSS** for styling.
+>
+> Here's what I need you to do step by step:
+>
+> ---
+>
+> **1. Set up the project structure**
+>
+> * Use `create-next-app` with TypeScript and Tailwind CSS
+> * Create the following top-level pages:
+>
+>   * `/` — Landing page
+>   * `/signup` — Signup form
+>   * `/courses` — Course catalog
+>   * `/profile` — User profile dashboard
+>
+> **2. Landing Page (`/`)**
+>
+> * Simple layout with:
+>
+>   * Header: “Welcome to The Praxis Institute”
+>   * Subheading: “An AI-powered academy for mastering healthcare analytics”
+>   * A button that links to `/signup`
+>   * Section showing two initial courses:
+>
+>     * SQL for Healthcare Analytics
+>     * Intro to Healthcare Analytics
+>   * Section showing “Coming soon” content:
+>
+>     * Python for Health Data Science
+>     * Gamified Progress
+>
+> **3. Signup Page (`/signup`)**
+>
+> * Basic form to collect:
+>
+>   * Name
+>   * Email
+>   * Learning goal (e.g., dropdown or free text)
+>   * Preferred track (SQL, Intro to Analytics, etc.)
+>
+> **4. Courses Page (`/courses`)**
+>
+> * Cards or tiles for each course
+> * Clicking a course routes to `/courses/[courseId]`
+>
+> **5. Profile Page (`/profile`)**
+>
+> * Placeholder showing course progress (use mock data)
+> * Include sections for:
+>
+>   * Earned points
+>   * Completed modules
+>   * Suggested next steps
+>
+> **6. General Layout**
+>
+> * Use Tailwind for styling
+> * Keep it clean, elegant, and simple — avoid anything too flashy or gamified just yet
+>
+> **7. Optional Enhancements**
+>
+> * Set up routing with dynamic routes for courses (`/courses/[slug]`)
+> * Use a layout component to share a consistent header/footer
+> * Scaffold placeholder modules for videos, quizzes, and labs (basic component only)
+>
+> ---
+>
+> Once this base is scaffolded, I’ll come back to you for the next phase: integrating authentication, course content delivery, and gamification mechanics.
+
+---
+
+You can paste this directly into a Codex context or add it to your `prompt.txt` task queue if you're using automation tools. Let me know if you want a version that includes backend choices like Firebase or Supabase.
