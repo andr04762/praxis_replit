@@ -32,7 +32,7 @@ export default function SqlLab({ moduleId, userId, onLabComplete }: SqlLabProps)
 
   // Set initial query when lab data loads
   useEffect(() => {
-    if (lab && !query) {
+    if (lab && lab.initialQuery && !query) {
       setQuery(lab.initialQuery);
     }
   }, [lab, query]);
