@@ -9,7 +9,7 @@ export default function Login() {
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     const fd = new FormData();
-    fd.append("username", email);
+    fd.append("email", email);
     fd.append("password", password);
     const res = await fetch("/api/auth/login", {
       method: "POST",
@@ -17,9 +17,8 @@ export default function Login() {
       body: new URLSearchParams(fd as any),
       credentials: "include",
     });
-    if (res.ok) {
-      navigate("/dashboard");
-    }
+    const data = await res.json();
+    if (data.ok) navigate("/dashboard");
   }
 
   return (

@@ -78,14 +78,17 @@ app.use((req, res, next) => {
     }
   });
 
-  app.post(
-    "/api/auth/login",
-    passport.authenticate("local"),
-    (req, res) => {
-      const user = req.user as any;
-      res.json({ id: user.id, email: user.username });
-    },
-  );
+  app.post("/api/auth/login", (req, res, next) => {
+    passport.authenticate("local", (err: any, user: any, info: any) => {
+      if (err) return next(err);
+      if (!user) return res.status(401).json({ message: info?.message || "Unauthorized" });
+
+      req.login(user, err => {
+        if (err) return next(err);
+        return res.json({ ok: true, email: (user as any).email });
+      });
+    })(req, res, next);
+  });
 
   app.post("/api/auth/logout", (req, res, next) => {
     req.logout(err => {
@@ -96,7 +99,7 @@ app.use((req, res, next) => {
 
   app.get("/api/me", ensureAuth, (req, res) => {
     const user = req.user as any;
-    res.json({ id: user.id, email: user.username });
+    res.json({ id: user.id, email: user.email });
   });
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
