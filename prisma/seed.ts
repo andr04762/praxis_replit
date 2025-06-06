@@ -23,3 +23,16 @@ main()
   .finally(async () => {
     await prisma.$disconnect();
   });
+// prisma/seed.ts
+async function main() {
+  const hashedPassword = await bcrypt.hash('Ra52w102$', 10);
+
+  await prisma.user.upsert({
+    where: { email: 'andr0476@outlook.com' },   // ← use UNIQUE email, not id
+    update: {},                                 // keep empty or set fields to change
+    create: {
+      email: 'andr0476@outlook.com',
+      hashedPassword,
+    },
+  });
+}
