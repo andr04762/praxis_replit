@@ -1,4 +1,4 @@
-import "dotenv/config";
+import "./env"; // MUST be first import
 import express, { type Request, Response, NextFunction } from "express";
 import session from "express-session";
 import connectPgSimple from "connect-pg-simple";
