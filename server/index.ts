@@ -1,7 +1,8 @@
 import express, { type Request, Response, NextFunction } from "express";
 import session from "express-session";
 import connectPgSimple from "connect-pg-simple";
-import { Pool } from "pg";
+import pg from "pg";
+const { Pool } = pg;
 import passport, { ensureAuth } from "./auth";
 import { storage } from "./storage";
 import bcrypt from "bcryptjs";
