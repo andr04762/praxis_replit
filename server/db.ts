@@ -1,1 +1,4 @@
-export { prisma as db } from '../lib/db/client'
+import "dotenv/config";
+import { PrismaClient } from "@prisma/client";
+
+export const db = new PrismaClient();
