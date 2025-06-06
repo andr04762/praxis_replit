@@ -10,6 +10,8 @@ import bcrypt from "bcryptjs";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
+console.log('[API] DATABASE_URL =', process.env.DATABASE_URL);
+
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

