@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useLocation } from "wouter";
-import { apiRequest } from "@/lib/queryClient";
 
 export default function Login() {
   const [, navigate] = useLocation();
@@ -9,8 +8,18 @@ export default function Login() {
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    await apiRequest("POST", "/api/auth/login", { email, password });
-    navigate("/dashboard");
+    const fd = new FormData();
+    fd.append("username", email);
+    fd.append("password", password);
+    const res = await fetch("/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(fd as any),
+      credentials: "include",
+    });
+    if (res.ok) {
+      navigate("/dashboard");
+    }
   }
 
   return (
