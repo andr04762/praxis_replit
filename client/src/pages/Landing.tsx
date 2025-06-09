@@ -5,10 +5,10 @@ import {
   HiRocketLaunch as RocketLaunchIcon,
   HiCurrencyDollar as CurrencyDollarIcon,
 } from "react-icons/hi2";
-import JesseImg from "@assets/Landing.Jesse.png";
-import ConferenceImg from "@assets/Landing.Conferance.png";
-import LoungeImg from "@assets/Landing.Lounge.png";
-import WorkstationImg from "@assets/Landing.Workstation.png";
+const JesseImg = "https://placehold.co/600x400?text=Praxis";
+const ConferenceImg = "https://placehold.co/600x400?text=Conference";
+const LoungeImg = "https://placehold.co/600x400?text=Lounge";
+const WorkstationImg = "https://placehold.co/600x400?text=Workstation";
 import { Check, X, Star } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
