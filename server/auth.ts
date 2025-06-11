@@ -9,6 +9,7 @@ import { db } from "./db";
   const prisma = (global as any).prisma as import('@prisma/client').PrismaClient;
   const haveUser = await prisma.user.findUnique({ where: { email } });
   if (!haveUser) {
+    const bcrypt = await import('bcryptjs');
     await prisma.user.create({
       data: {
         email: email.toLowerCase(),
